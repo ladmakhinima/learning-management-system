@@ -7,10 +7,7 @@ import com.ladmakhi.lms.dtos.category.UpdateCategoryDto;
 import com.ladmakhi.lms.models.Category;
 import com.ladmakhi.lms.repositories.CategoryRepository;
 import com.ladmakhi.lms.services.CategoryService;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

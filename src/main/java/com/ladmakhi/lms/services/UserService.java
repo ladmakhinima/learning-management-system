@@ -1,0 +1,11 @@
+package com.ladmakhi.lms.services;
+
+import com.ladmakhi.lms.common.exception.DuplicateException;
+import com.ladmakhi.lms.dtos.user.CreateUserDto;
+import com.ladmakhi.lms.models.User;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
+public interface UserService {
+    User createUser(CreateUserDto dto) throws DuplicateException;
+    User findUserByPhoneAndPassword(String phone, String password) throws UsernameNotFoundException;
+}
