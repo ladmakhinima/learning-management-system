@@ -30,9 +30,11 @@ public class GetCurrentUserResolver implements HandlerMethodArgumentResolver {
             NativeWebRequest webRequest,
             WebDataBinderFactory binderFactory
     ) throws Exception {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String phone = authentication.getName();
-        User user = userService.findUserByPhone(phone);
-        return user;
+        if (parameter.hasParameterAnnotation(GetCurrentUser.class)) {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String phone = authentication.getName();
+            return  userService.findUserByPhone(phone);
+        }
+        return null;
     }
 }

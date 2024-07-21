@@ -24,7 +24,7 @@ public class CommentController {
     @PostMapping
     public ResponseEntity<GetCommentDto> createComment(
             @RequestBody @Valid CreateCommentDto dto,
-            @GetCurrentUser() User user
+            @GetCurrentUser User user
     ) throws NotFoundException {
         Comment comment = commentService.createComment(dto, user);
         GetCommentDto responseDto = commentMapper.mapCommentToGetCommentDto(comment);

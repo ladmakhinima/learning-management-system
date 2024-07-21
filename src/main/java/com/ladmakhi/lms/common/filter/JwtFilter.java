@@ -32,6 +32,5 @@ public class JwtFilter extends OncePerRequestFilter {
         }
         jwtService.verifyToken(token);
         filterChain.doFilter(request, response);
-        return;
     }
 }
