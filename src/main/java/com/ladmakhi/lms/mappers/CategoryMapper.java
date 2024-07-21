@@ -5,7 +5,6 @@ import com.ladmakhi.lms.dtos.category.GetCategoryDto;
 import com.ladmakhi.lms.models.Category;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
-import org.springframework.data.domain.Page;
 
 import java.util.List;
 

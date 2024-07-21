@@ -1,11 +1,13 @@
 package com.ladmakhi.lms.implmentations;
 
 import com.ladmakhi.lms.common.exception.DuplicateException;
+import com.ladmakhi.lms.common.exception.NotFoundException;
 import com.ladmakhi.lms.dtos.user.CreateUserDto;
 import com.ladmakhi.lms.models.User;
 import com.ladmakhi.lms.repositories.UserRepository;
 import com.ladmakhi.lms.services.UserService;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.annotations.NotFound;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -43,5 +45,17 @@ public class UserServiceImpl implements UserService {
             throw new UsernameNotFoundException("اطلاعات احراز هویت کاربر نادرست میباشد");
         }
         return user;
+    }
+
+    @Override
+    public User findUserById(Long id) throws NotFoundException {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("کاربر یافت نشد"));
+    }
+
+    @Override
+    public User findUserByPhone(String phone) throws NotFoundException {
+        return userRepository.findUserByPhone(phone)
+                .orElseThrow(() -> new NotFoundException("کاربری با این شماره تماس یافت نشد"));
     }
 }

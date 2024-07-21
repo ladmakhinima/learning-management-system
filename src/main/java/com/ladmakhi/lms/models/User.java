@@ -1,8 +1,11 @@
 package com.ladmakhi.lms.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ladmakhi.lms.common.entity.CoreEntity;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -30,6 +33,13 @@ public class User extends CoreEntity {
     @Column(name = "bio")
     private String bio;
 
+    @OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY)
+    private List<Course> teachedCourses;
+
     @Enumerated(EnumType.STRING)
     private UserRole role;
+
+    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Comment> comments;
 }
