@@ -1,5 +1,6 @@
 package com.ladmakhi.lms.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ladmakhi.lms.common.entity.CoreEntity;
 import jakarta.persistence.*;
@@ -42,4 +43,9 @@ public class User extends CoreEntity {
     @OneToMany(mappedBy = "author", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Comment> comments;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
+    @JsonBackReference
+    private List<Payment> payments;
 }
