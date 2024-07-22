@@ -14,6 +14,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/comments")
 @RequiredArgsConstructor
@@ -38,6 +40,15 @@ public class CommentController {
     ) throws NotFoundException {
         Comment comment = commentService.deleteCommentById(id);
         GetCommentDto responseDto = commentMapper.mapCommentToGetCommentDto(comment);
+        return new ResponseEntity<>(responseDto, HttpStatus.OK);
+    }
+
+    @GetMapping("{courseId}/courses")
+    public ResponseEntity<List<GetCommentDto>> getCommentsByCourseId(
+            @PathVariable("courseId") Long courseId
+    ) {
+        List<Comment> comments = commentService.findCommentByCourseId(courseId);
+        List<GetCommentDto> responseDto = commentMapper.mapCommentsToListOfGetCommentDto(comments);
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
 }

@@ -5,12 +5,13 @@ import com.ladmakhi.lms.dtos.comment.CreateCommentDto;
 import com.ladmakhi.lms.models.Comment;
 import com.ladmakhi.lms.models.Course;
 import com.ladmakhi.lms.models.User;
-import com.ladmakhi.lms.models.UserRole;
 import com.ladmakhi.lms.repositories.CommentRepository;
 import com.ladmakhi.lms.services.CommentService;
 import com.ladmakhi.lms.services.CourseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -47,5 +48,10 @@ public class CommentServiceImpl implements CommentService {
     public Comment findCommentById(Long id) throws NotFoundException {
         return commentRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("کامنت مورد نظر یافت نشد"));
+    }
+
+    @Override
+    public List<Comment> findCommentByCourseId(Long id) {
+        return commentRepository.findAllByCourseId(id);
     }
 }
