@@ -1,5 +1,6 @@
 package com.ladmakhi.lms.controllers;
 
+import com.ladmakhi.lms.common.annotation.CheckRole;
 import com.ladmakhi.lms.common.annotation.GetCurrentUser;
 import com.ladmakhi.lms.common.exception.NotFoundException;
 import com.ladmakhi.lms.dtos.payment.GetInitialPaymentResponseDto;
@@ -9,6 +10,7 @@ import com.ladmakhi.lms.dtos.payment.VerifyPaymentDto;
 import com.ladmakhi.lms.mappers.PaymentMapper;
 import com.ladmakhi.lms.models.Payment;
 import com.ladmakhi.lms.models.User;
+import com.ladmakhi.lms.models.UserRole;
 import com.ladmakhi.lms.services.PaymentService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -47,6 +49,7 @@ public class PaymentController {
 
 
     @GetMapping
+    @CheckRole(role = UserRole.Admin)
     public ResponseEntity<List<GetPaymentDto>> getPayments() {
         List<Payment> payments = paymentService.getPayments();
         List<GetPaymentDto> responseDto = paymentMapper.mapPaymentsToListOfGetPaymentDto(payments);

@@ -5,7 +5,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ladmakhi.lms.common.entity.CoreEntity;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -15,7 +21,7 @@ import java.util.List;
 @Builder
 @Getter
 @Setter
-public class User extends CoreEntity {
+public class User extends CoreEntity implements UserDetails {
     @Column(name = "first_name")
     private String firstName;
 
@@ -48,4 +54,14 @@ public class User extends CoreEntity {
     @JsonIgnore
     @JsonBackReference
     private List<Payment> payments;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(role.toString()));
+    }
+
+    @Override
+    public String getUsername() {
+        return phone;
+    }
 }

@@ -1,10 +1,12 @@
 package com.ladmakhi.lms.controllers;
 
+import com.ladmakhi.lms.common.annotation.CheckRole;
 import com.ladmakhi.lms.common.exception.DuplicateException;
 import com.ladmakhi.lms.common.exception.NotFoundException;
 import com.ladmakhi.lms.dtos.course.*;
 import com.ladmakhi.lms.mappers.CourseMapper;
 import com.ladmakhi.lms.models.Course;
+import com.ladmakhi.lms.models.UserRole;
 import com.ladmakhi.lms.models.Video;
 import com.ladmakhi.lms.services.CourseService;
 import com.ladmakhi.lms.services.VideoService;
@@ -30,6 +32,7 @@ public class CourseController {
     private final VideoService videoService;
 
     @PostMapping("upload-image")
+    @CheckRole(role = UserRole.Admin)
     public ResponseEntity<CourseUploadImageOutputDto> uploadImage(
             @RequestParam("file") MultipartFile file
     ) throws IOException {
@@ -38,6 +41,7 @@ public class CourseController {
     }
 
     @PostMapping("upload-video")
+    @CheckRole(role = UserRole.Admin)
     public ResponseEntity<?> uploadVideo(
             @RequestParam("file") MultipartFile file
     ) throws IOException {
@@ -46,6 +50,7 @@ public class CourseController {
     }
 
     @PostMapping("assign-video")
+    @CheckRole(role = UserRole.Admin)
     public ResponseEntity<GetVideoDto> assignVideoToCourse(
             @RequestBody @Valid AssignVideoToCourseDto dto
     ) throws NotFoundException {
@@ -55,6 +60,7 @@ public class CourseController {
     }
 
     @PutMapping("video/{id}")
+    @CheckRole(role = UserRole.Admin)
     public ResponseEntity<GetVideoDto> updateVideoOfCourseById(
             @PathVariable("id") Long id,
             @RequestBody @Valid UpdateVideoDetailDto dto
@@ -65,6 +71,7 @@ public class CourseController {
     }
 
     @DeleteMapping("video/{id}")
+    @CheckRole(role = UserRole.Admin)
     public ResponseEntity<GetVideoDto> deleteVideoOfCourseById(
             @PathVariable("id") Long id
     ) throws NotFoundException {
@@ -75,6 +82,7 @@ public class CourseController {
 
 
     @PostMapping
+    @CheckRole(role = UserRole.Admin)
     public ResponseEntity<GetCourseDto> createCourse(
             @RequestBody @Valid CreateCourseDto dto
     ) throws DuplicateException, NotFoundException {
@@ -84,6 +92,7 @@ public class CourseController {
     }
 
     @DeleteMapping("{id}")
+    @CheckRole(role = UserRole.Admin)
     @Transactional
     public ResponseEntity<GetCourseDto> deleteCourseById(
             @PathVariable("id") Long id
