@@ -13,16 +13,10 @@ import java.util.List;
 
 public interface CourseService {
     CourseUploadImageOutputDto uploadImage(MultipartFile file) throws IOException;
-
     CourseUploadVideoOutputDto uploadVideo(MultipartFile file) throws IOException;
-
     Course findCourseById(Long id) throws NotFoundException;
-
     Course createCourse(CreateCourseDto dto) throws DuplicateException, NotFoundException;
-
     Course deleteCourseById(Long id) throws NotFoundException;
-
     List<Course> getCourses();
-
     List<Course> getCoursesByIds(List<Long> ids) throws NotFoundException;
 }

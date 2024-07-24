@@ -1,16 +1,13 @@
 package com.ladmakhi.lms.implmentations;
 
-import com.auth0.jwt.interfaces.Claim;
 import com.ladmakhi.lms.models.User;
 import com.ladmakhi.lms.services.JsonWebTokenService;
-import com.twilio.rest.oauth.v1.Authorize;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -32,11 +29,12 @@ public class JsonWebTokenServiceImpl implements JsonWebTokenService {
     public String generateToken(User user) {
         String token = Jwts.builder()
                 .claim("id", user.getId())
-                .setSubject(user.getPhone())
-                .setIssuedAt(new Date())
-                .setClaims(Collections.singletonMap("role", user.getRole()))
+                .addClaims(Collections.singletonMap("phone", user.getPhone()))
+                .addClaims(Collections.singletonMap("role", user.getRole()))
                 .setExpiration(getExpirationTime())
                 .signWith(generateSignKey())
+                .setSubject(user.getPhone())
+                .setIssuedAt(new Date())
                 .compact();
         Authentication authentication = new UsernamePasswordAuthenticationToken(
                 user.getPhone(),

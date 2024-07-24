@@ -15,7 +15,7 @@ public class ZibalInquiryProcessResponseDto {
     private Date paidAt;
     private Date verifiedAt;
     private int status;
-    private Double amount;
-    private Double shaparakFee;
+    private int amount;
+    private int shaparakFee;
 }
 

@@ -13,8 +13,8 @@ public class GetTransactionPaymentDto {
     private Long id;
     private GetUserDto user;
     private PaymentStatus status;
-    private Double price;
-    private Double fee;
+    private int price;
+    private int fee;
     private Date payedAt;
     private Date expiredAt;
     private Date verifiedAt;

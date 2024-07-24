@@ -11,5 +11,5 @@ public class ZibalVerifyProcessResponseDto {
     private int result;
     private String paidAt;
     private int status;
-    private Double amount;
+    private int amount;
 }

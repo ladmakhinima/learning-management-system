@@ -55,8 +55,8 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public Payment initialPayment(InitialPaymentDto dto, User user) throws NotFoundException {
         List<Course> courses = courseService.getCoursesByIds(dto.getCoursesId());
-        Double price = courses.stream().map(Course::getPrice)
-                .reduce(0D, Double::sum);
+        int price = courses.stream().map(Course::getPrice)
+                .reduce(0, Integer::sum);
         ZibalInitializeProcessResponseDto response = zibalPaymentProcess.initializeZibalProcess(
                 ZibalInitializeProcessDto.builder().price(price).build(),
                 user
@@ -117,7 +117,7 @@ public class PaymentServiceImpl implements PaymentService {
                     CreateTransactionDto
                             .builder()
                             .payment(payment)
-                            .finalDiscount(0D)
+                            .finalDiscount(0)
                             .finalPrice(payment.getPrice())
                             .isSuccess(inquiryResponse.getStatus() == 2 || inquiryResponse.getStatus() == 1)
                             .gatewayType(TransactionGatewayType.ZIBAL)

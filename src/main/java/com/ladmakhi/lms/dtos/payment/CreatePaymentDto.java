@@ -12,7 +12,7 @@ import java.util.List;
 @Setter
 @Builder
 public class CreatePaymentDto {
-    private Double price;
+    private int price;
     private List<Course> courses;
     private User user;
     private boolean isSuccess;

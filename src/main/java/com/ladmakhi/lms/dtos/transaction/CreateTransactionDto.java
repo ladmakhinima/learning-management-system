@@ -11,8 +11,8 @@ import lombok.Setter;
 @Builder
 public class CreateTransactionDto {
     private boolean isSuccess;
-    private Double finalPrice;
-    private Double finalDiscount;
+    private int finalPrice;
+    private int finalDiscount;
     private Payment payment;
     private TransactionGatewayType gatewayType;
 }

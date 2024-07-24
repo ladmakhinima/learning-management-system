@@ -34,10 +34,10 @@ public class Payment extends CoreEntity {
     private PaymentStatus status;
 
     @Column(name = "price")
-    private Double price;
+    private int price;
 
     @Column(name = "fee")
-    private Double fee;
+    private int fee;
 
     @Column(name = "track_id")
     private Long trackId;

@@ -13,6 +13,6 @@ public class CreateCourseDto {
     private Long teacherId;
     private String image;
     private String thumbnail;
-    private Double price;
+    private int price;
     private CourseLevel level;
 }

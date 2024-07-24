@@ -9,7 +9,7 @@ import lombok.Setter;
 public class GetInitialPaymentResponseDto {
     private Long id;
     private PaymentStatus status;
-    private Double price;
+    private int price;
     private Long trackId;
     private String payLink;
 }

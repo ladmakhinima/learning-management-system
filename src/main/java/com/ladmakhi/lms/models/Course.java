@@ -22,6 +22,7 @@ public class Course extends CoreEntity {
     @JsonManagedReference
     private List<Video> videos;
 
+    @Column(name = "title", columnDefinition = "TEXT")
     private String title;
 
     @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
@@ -38,11 +39,11 @@ public class Course extends CoreEntity {
     @Column(name = "thumbnail")
     private String thumbnail;
 
-    @Column(name = "description")
+    @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
     @Column(name = "price")
-    private Double price;
+    private int price;
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)

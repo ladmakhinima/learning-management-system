@@ -33,7 +33,7 @@ public class GetCurrentUserResolver implements HandlerMethodArgumentResolver {
         if (parameter.hasParameterAnnotation(GetCurrentUser.class)) {
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             String phone = authentication.getName();
-            return  userService.findUserByPhone(phone);
+            return userService.findUserByPhone(phone);
         }
         return null;
     }

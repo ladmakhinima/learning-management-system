@@ -8,5 +8,5 @@ import lombok.Setter;
 @Setter
 @Builder
 public class ZibalInitializeProcessDto {
-    private Double price;
+    private int price;
 }

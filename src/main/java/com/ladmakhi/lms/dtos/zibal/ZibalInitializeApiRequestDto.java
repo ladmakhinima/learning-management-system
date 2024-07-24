@@ -9,7 +9,7 @@ import lombok.Setter;
 @Builder
 public class ZibalInitializeApiRequestDto {
     private String merchant;
-    private Double amount;
+    private int amount;
     private String callbackUrl;
     private boolean linkToPay;
 }

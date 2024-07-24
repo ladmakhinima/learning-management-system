@@ -46,7 +46,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public Category findCategoryById(Long id) throws NotFoundException {
         return categoryRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("دسته بندی با این شناسه یافت نشد"));
+                .orElseThrow(() ->  new NotFoundException("دسته بندی با این شناسه یافت نشد"));
     }
 
     @Override

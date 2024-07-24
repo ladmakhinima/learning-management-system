@@ -55,6 +55,11 @@ public class User extends CoreEntity implements UserDetails {
     @JsonBackReference
     private List<Payment> payments;
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @JsonIgnore
+    @JsonBackReference
+    private List<TransactionReport> transactionReports;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.toString()));

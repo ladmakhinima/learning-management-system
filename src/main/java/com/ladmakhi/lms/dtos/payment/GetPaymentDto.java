@@ -12,9 +12,9 @@ import java.util.Date;
 public class GetPaymentDto {
     private Long id;
     private PaymentStatus status;
-    private Double price;
+    private int price;
     private Long trackId;
-    private Double fee;
+    private int fee;
     private Date payedAt;
     private Date verifiedAt;
     private GetUserDto user;
