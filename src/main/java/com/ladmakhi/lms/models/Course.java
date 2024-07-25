@@ -5,6 +5,7 @@ import com.ladmakhi.lms.common.entity.CoreEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Getter
@@ -14,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "courses")
-public class Course extends CoreEntity {
+public class Course extends CoreEntity implements Serializable {
     @OneToMany(
             mappedBy = "course",
             fetch = FetchType.LAZY
@@ -31,6 +32,7 @@ public class Course extends CoreEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "teacher_id")
+    @JsonManagedReference
     private User teacher;
 
     @Column(name = "image")
@@ -42,8 +44,10 @@ public class Course extends CoreEntity {
     @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
+    // TODO CONVERT INT TO LONG
     @Column(name = "price")
     private int price;
+
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
@@ -55,5 +59,6 @@ public class Course extends CoreEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
+    @JsonManagedReference
     private Category category;
 }

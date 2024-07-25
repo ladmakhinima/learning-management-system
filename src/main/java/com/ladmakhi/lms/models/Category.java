@@ -1,5 +1,6 @@
 package com.ladmakhi.lms.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.ladmakhi.lms.common.entity.CoreEntity;
 import jakarta.persistence.*;
 import lombok.*;
@@ -31,4 +32,8 @@ public class Category extends CoreEntity {
 
     @Column(name = "is_visible")
     private boolean isVisible;
+
+    @OneToMany(mappedBy = "category")
+    @JsonBackReference
+    private List<Course> courses;
 }

@@ -5,6 +5,7 @@ import com.ladmakhi.lms.common.entity.CoreEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
+
 @Getter
 @Setter
 @Builder
