@@ -6,6 +6,8 @@ import com.ladmakhi.lms.common.entity.CoreEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.io.Serializable;
+
 
 @Getter
 @Setter
@@ -14,7 +16,7 @@ import lombok.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "videos")
-public class Video extends CoreEntity {
+public class Video extends CoreEntity implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "course_id")
     @JsonBackReference

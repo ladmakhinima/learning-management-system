@@ -11,9 +11,7 @@ import com.ladmakhi.lms.models.CourseStatus;
 import com.ladmakhi.lms.models.User;
 import com.ladmakhi.lms.repositories.CourseRepository;
 import com.ladmakhi.lms.services.*;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -85,6 +83,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    @Cacheable(value = "courses", key = "'getCourses'")
     public List<Course> getCourses() {
         return courseRepository.findAll(
                 Sort.by(Sort.Direction.DESC, "id")

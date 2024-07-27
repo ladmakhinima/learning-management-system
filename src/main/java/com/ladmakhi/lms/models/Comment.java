@@ -25,6 +25,7 @@ public class Comment extends CoreEntity {
             cascade = CascadeType.ALL
     )
     @JoinColumn(name = "author_id")
+    @JsonManagedReference
     private User author;
 
     @ManyToOne(fetch = FetchType.LAZY)

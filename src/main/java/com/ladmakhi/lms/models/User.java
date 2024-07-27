@@ -47,6 +47,7 @@ public class User extends CoreEntity implements UserDetails {
 
     @OneToMany(mappedBy = "author", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
+    @JsonBackReference
     private List<Comment> comments;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

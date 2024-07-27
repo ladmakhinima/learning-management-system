@@ -13,8 +13,6 @@ import com.ladmakhi.lms.services.VideoService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -85,7 +83,6 @@ public class CourseController {
 
     @PostMapping
     @CheckRole(role = UserRole.Admin)
-    @CacheEvict(value = "courses", key = "'getCourses'")
     public ResponseEntity<GetCourseDto> createCourse(
             @RequestBody @Valid CreateCourseDto dto
     ) throws DuplicateException, NotFoundException {
@@ -106,8 +103,6 @@ public class CourseController {
     }
 
     @GetMapping
-    @Cacheable(value = "courses", key = "'getCourses'")
-    @Transactional
     public ResponseEntity<List<GetCourseDto>> getCourses() {
         List<Course> courses = courseService.getCourses();
         List<GetCourseDto> responseDto = courseMapper.mapCoursesToListOfGetCourseDto(courses);
